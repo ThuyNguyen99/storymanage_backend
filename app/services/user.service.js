@@ -11,7 +11,7 @@ class UserService {
             email: payload.email,
             address: payload.address,
             phone: payload.phone,
-            favorite: payload.favorite,
+            access: payload.access,
         };
         // Remove undefined fields
         Object.keys(user).forEach(
@@ -24,7 +24,7 @@ class UserService {
         const user = this.extractConactData(payload);
         const result = await this.User.findOneAndUpdate(
             user,
-            { $set: { favorite: user.favorite === true } },
+            { $set: { access: user.access === true } },
             { returnDocument: "after", upsert: true }
         );
         return result.value;
@@ -67,8 +67,8 @@ class UserService {
         return result.value;
     }
 
-    async findFavorite(){
-        return await this.find({ favorite: true });
+    async findAccess(){
+        return await this.find({ access: true });
     }
 
     async deleteAll(){

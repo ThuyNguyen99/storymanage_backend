@@ -90,14 +90,14 @@ exports.delete = async (req, res, next) => {
     }
 };
 
-exports.findAllFavorite = async (_req, res, next) => {
+exports.findAllAccess = async (_req, res, next) => {
     try {
         const userService = new UserService(MongoDB.client);
-        const documents = await userService.findFavorite();
+        const documents = await userService.findAccess();
         return res.send(documents);
     } catch (error) {
         return next(
-            new ApiError(500, "An error occurred while retrieving favorite users")
+            new ApiError(500, "An error occurred while retrieving Access users")
         );
     }
 };

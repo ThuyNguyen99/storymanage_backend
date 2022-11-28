@@ -90,14 +90,14 @@ exports.delete = async (req, res, next) => {
     }
 };
 
-exports.findAllFavorite = async (_req, res, next) => {
+exports.findAllCompleted = async (_req, res, next) => {
     try {
         const postService = new PostService(MongoDB.client);
-        const documents = await postService.findFavorite();
+        const documents = await postService.findCompleted();
         return res.send(documents);
     } catch (error) {
         return next(
-            new ApiError(500, "An error occurred while retrieving favorite posts")
+            new ApiError(500, "An error occurred while retrieving completed posts")
         );
     }
 };

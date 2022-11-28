@@ -8,8 +8,8 @@ router.route("/")
     .post(posts.create)
     .delete(posts.deleteAll);
 
-router.route("/favorite")
-    .get(posts.findAllFavorite);
+router.route("/completed")
+    .get(posts.findAllCompleted);
 
 router.route("/:id")
     .get(posts.findOne)

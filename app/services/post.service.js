@@ -11,7 +11,7 @@ class PostService {
             title: payload.title,
             author: payload.author, 
             des: payload.des,
-            favorite: payload.favorite,
+            completed: payload.completed,
         };
         // Remove undefined fields
         Object.keys(post).forEach(
@@ -24,7 +24,7 @@ class PostService {
         const post = this.extractConactData(payload);
         const result = await this.Post.findOneAndUpdate(
             post,
-            { $set: { favorite: post.favorite === true } },
+            { $set: { completed: post.completed === true } },
             { returnDocument: "after", upsert: true }
         );
         return result.value;
@@ -67,8 +67,8 @@ class PostService {
         return result.value;
     }
 
-    async findFavorite(){
-        return await this.find({ favorite: true });
+    async findCompleted(){
+        return await this.find({ completed: true });
     }
 
     async deleteAll(){
